@@ -1,8 +1,11 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "./index.css"; // Import global CSS
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="home-container">
       {/* Animated Logo */}
@@ -31,30 +34,31 @@ const Home = () => {
         <br />
         <span className="highlight">Join us on April 4th & 5th for an unforgettable celebration of talent and tradition.</span>
       </p>
+      
 
       {/* Register Button */}
-      <a href="https://forms.gle/roK9CNUCFxaLq2Bp7" target="_blank" rel="noopener noreferrer">
-        <motion.button
-          className="register-button"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          Register Now
-        </motion.button>
-      </a>
+      <motion.button
+        className="register-button"
+        onClick={() => navigate("/register")}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        Register Now
+      </motion.button>
 
       {/* Footer */}
       <footer className="footer">
-        <a href="https://www.instagram.com/tharangam_cet?igsh=Z2lnaWlpMDZ6ZWVm" target="_blank" rel="noopener noreferrer">
-          📸 Follow us on Instagram
-        </a>
-        <a href="/guidelines.pdf" target="_blank" rel="noopener noreferrer">
-          📄 Event Guidelines (PDF)
-        </a>
-        <p className="copyright">
-          © {new Date().getFullYear()} Tharangam. All Rights Reserved.
-        </p>
-      </footer>
+            <a href="https://www.instagram.com/tharangam_cet?igsh=Z2lnaWlpMDZ6ZWVm" target="_blank" rel="noopener noreferrer">
+                📸 Follow us on Instagram
+            </a>
+            <a href="/guidelines.pdf" target="_blank" rel="noopener noreferrer">
+                📄 Event Guidelines (PDF)
+            </a>
+            <p className="copyright">
+                © {new Date().getFullYear()} Tharangam. All Rights Reserved.
+            </p>
+            
+        </footer>
     </div>
   );
 };

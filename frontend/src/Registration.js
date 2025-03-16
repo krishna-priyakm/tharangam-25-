@@ -79,14 +79,13 @@ const Registration = () => {
         e.preventDefault();
 
         try {
-            const response = axios.post('https://tharangam-backend.vercel.app/register', formData)
+            const response = axios.post('http://localhost:5000/register', formData)
             .then(response => console.log('Success:', response))
             .catch(error => {
               console.error('Error:', error.message);
               console.error('Details:', error.response || error);
             });          
           
-            alert("Registration successful!");
             setFormData({
                 name: "",
                 email: "",
@@ -97,6 +96,8 @@ const Registration = () => {
                 groupEvents: [],
                 teamMembers: {}
             });
+            alert("Registration successful!");
+
         } catch (error) {
             console.error("Registration failed:", error);
             alert("Registration failed. Please try again.");

@@ -12,19 +12,10 @@ const app = express();
 app.use("/api/auth", authRoutes);
 
 
-// Middleware
-// app.use(cors({
-//   origin: [
-//     "https://tharangam25.vercel.app"   // Allow localhost too
-//   ],
-//   methods: ["GET", "POST"],
-//   credentials: true
-// }));
 
-const cors = require('cors');
 app.use(cors({
-  origin: 'http://localhost:3005',
-  methods: ['POST']
+  origin: '*',   // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']  // Allow all methods
 }));
 
 
@@ -39,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB connection error:", err));
 
-// // Participant Schema
+// Participant Schema
 // const participantSchema = new mongoose.Schema({
 //   name: String,
 //   email: String,
@@ -52,18 +43,71 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // const Participant = mongoose.model("Participant", participantSchema);
 
+const Participant = mongoose.models.Participant || mongoose.model("Participant", new mongoose.Schema({
+  name: String,
+  email: String,
+  department: String,
+  year: Number,
+  phone: String,
+  singleEvents: [String],
+  groupEvents: [{ eventName: String, teamMembers: [String] }]
+}));
+
+module.exports = Participant;
+
 // Register Participant Route
-app.post('/register', (req, res) => {
-  // Handle registration logic here
-  res.status(200).send('Registration successful');
+// app.post('/register',async (req, res) => {
+//   // Handle registration logic here
+//   console.log("Registerrr")
+//   res.status(200).send('Registration successful');
+
+//   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
+
+//   if (singleEvents.length > 5 || groupEvents.length > 3) {
+//     return res.status(400).json({ message: "Event selection exceeds limit." });
+//   }
+// console.log(req.body)
+// try {
+//   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
+
+//   const newParticipant = new Participant({
+//     name,
+//     email,
+//     department,
+//     year,
+//     phone,
+//     singleEvents,
+//     groupEvents,
+//   });
+
+//   // Save the new participant to the database
+//   await newParticipant.save();
+
+//   // Respond with a success message
+//   return res.status(201).json({ message: "Registration successful!" });  // Added return to ensure no further response
+
+// } catch (error) {
+//   console.error(error);  // Log the error for debugging purposes
+
+//   // Respond with an error message
+//   return res.status(500).json({ message: "Error registering participant." });  // Added return here too
+// }
+// })
+
+app.post('/register', async (req, res) => {
+  console.log("Registerrr");
 
   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
 
+  // Check if event selection exceeds the limit
   if (singleEvents.length > 5 || groupEvents.length > 3) {
     return res.status(400).json({ message: "Event selection exceeds limit." });
   }
 
+  console.log(req.body);
+
   try {
+    // Create a new participant object
     const newParticipant = new Participant({
       name,
       email,
@@ -73,12 +117,21 @@ app.post('/register', (req, res) => {
       singleEvents,
       groupEvents,
     });
+
+    // Save the new participant to the database
     await newParticipant.save();
-    res.status(201).json({ message: "Registration successful!" });
+
+    // Respond with a success message
+    return res.status(201).json({ message: "Registration successful!" });
+    
   } catch (error) {
-    res.status(500).json({ message: "Error registering participant." });
+    console.error(error);  // Log the error for debugging purposes
+
+    // Respond with an error message
+    return res.status(500).json({ message: "Error registering participant." });
   }
 });
+
 
 // Fetch All Participants (For Admin)
 app.get("/api/registrations", async (req, res) => {
