@@ -79,7 +79,7 @@ const Registration = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:5000/register", formData);
+            const response = await axios.post("https://tharangam-backend.vercel.app/register", formData);
             alert("Registration successful!");
             setFormData({
                 name: "",
