@@ -10,18 +10,13 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: "*",  // Allow all origins (for now)
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
-
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(
+  cors({
+    origin: "*", // Allow all origins (for now)
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 
@@ -29,12 +24,13 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRoutes);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("MongoDB connected"))
-.catch((err) => console.error("MongoDB connection error:", err));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // Participant Schema
 const participantSchema = new mongoose.Schema({
@@ -82,6 +78,11 @@ app.get("/api/registrations", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Error fetching participants." });
   }
+});
+
+// Default route to check if backend is running
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
 });
 
 // Server Listening
