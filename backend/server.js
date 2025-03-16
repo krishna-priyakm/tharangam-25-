@@ -10,80 +10,28 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: "*", // Allow all origins (for now)
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
-
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 app.use(bodyParser.json());
 
 // API Routes
 app.use("/api/auth", authRoutes);
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
-
-// Participant Schema
-const participantSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  department: String,
-  year: Number,
-  phone: String,
-  singleEvents: [String],
-  groupEvents: [{ eventName: String, teamMembers: [String] }],
-});
-
-const Participant = mongoose.model("Participant", participantSchema);
-
-// Register Participant Route
-app.post("/register", async (req, res) => {
-  const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
-
-  if (singleEvents.length > 5 || groupEvents.length > 3) {
-    return res.status(400).json({ message: "Event selection exceeds limit." });
-  }
-
-  try {
-    const newParticipant = new Participant({
-      name,
-      email,
-      department,
-      year,
-      phone,
-      singleEvents,
-      groupEvents,
-    });
-    await newParticipant.save();
-    res.status(201).json({ message: "Registration successful!" });
-  } catch (error) {
-    res.status(500).json({ message: "Error registering participant." });
-  }
-});
-
-// Fetch All Participants (For Admin)
-app.get("/api/registrations", async (req, res) => {
-  try {
-    const participants = await Participant.find();
-    res.json(participants);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching participants." });
-  }
-});
-
-// Default route to check if backend is running
+// Root Route (Fix for Cannot GET /)
 app.get("/", (req, res) => {
-  res.send("Backend is running!");
+  res.send("Backend is live");
 });
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.error("MongoDB connection error:", err));
 
 // Server Listening
 const PORT = process.env.PORT || 5000;
