@@ -1,19 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const Participant = require('../models/Participant');
 
-const adminCredentials = {
-    email: "amalv61@gmail.com",
-    password: "Thadi@gecwyd"
-};
+router.post('/register', async (req, res) => {
+  const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
 
-router.post("/admin/login", (req, res) => {
-    const { email, password } = req.body;
+  try {
+    const newParticipant = new Participant({
+      name,
+      email,
+      department,
+      year,
+      phone,
+      singleEvents,
+      groupEvents,
+    });
 
-    if (email === adminCredentials.email && password === adminCredentials.password) {
-        res.status(200).json({ message: "Login successful", token: "admin-token-123" });
-    } else {
-        res.status(401).json({ message: "Invalid credentials" });
-    }
+    await newParticipant.save();
+    res.status(201).json({ message: 'Registration successful!' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Server error during registration' });
+  }
 });
 
 module.exports = router;

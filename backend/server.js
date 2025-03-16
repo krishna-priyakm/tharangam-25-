@@ -9,17 +9,27 @@ const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
+app.use("/api/auth", authRoutes);
+
+
 // Middleware
+// app.use(cors({
+//   origin: [
+//     "https://tharangam25.vercel.app"   // Allow localhost too
+//   ],
+//   methods: ["GET", "POST"],
+//   credentials: true
+// }));
+
+const cors = require('cors');
 app.use(cors({
-  origin: "https://tharangam25.vercel.app",  // Allow only your frontend domain
-  methods: ["GET", "POST"],
-  credentials: true,
+  origin: 'http://localhost:3005',
+  methods: ['POST']
 }));
 
-app.use(bodyParser.json());
 
-// API Routes
-app.use("/api/auth", authRoutes);
+app.use(express.json());
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -29,21 +39,24 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB connection error:", err));
 
-// Participant Schema
-const participantSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  department: String,
-  year: Number,
-  phone: String,
-  singleEvents: [String],
-  groupEvents: [{ eventName: String, teamMembers: [String] }],
-});
+// // Participant Schema
+// const participantSchema = new mongoose.Schema({
+//   name: String,
+//   email: String,
+//   department: String,
+//   year: Number,
+//   phone: String,
+//   singleEvents: [String],
+//   groupEvents: [{ eventName: String, teamMembers: [String] }],
+// });
 
-const Participant = mongoose.model("Participant", participantSchema);
+// const Participant = mongoose.model("Participant", participantSchema);
 
 // Register Participant Route
-app.post("/api/register", async (req, res) => {
+app.post('/register', (req, res) => {
+  // Handle registration logic here
+  res.status(200).send('Registration successful');
+
   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
 
   if (singleEvents.length > 5 || groupEvents.length > 3) {
