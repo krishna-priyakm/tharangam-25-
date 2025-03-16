@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Registration from "./Registration";
-// import Admin from "./Admin";
+import Admin from "./Admin";
 
 import "./index.css"; // No need for `../`, since it's inside src/
 
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Registration />} />
-        {/* <Route path="/admin" element={<Admin />} /> */}
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );

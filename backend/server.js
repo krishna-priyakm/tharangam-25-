@@ -1,66 +1,3 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-// const bodyParser = require("body-parser");
-// require("dotenv").config();
-
-// const app = express();
-// app.use(cors());
-// app.use(bodyParser.json());
-
-// mongoose.connect(process.env.MONGO_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// const participantSchema = new mongoose.Schema({
-//   name: String,
-//   email: String,
-//   department: String,
-//   year: Number,
-//   phone: String,
-//   singleEvents: [String],
-//   groupEvents: [{ eventName: String, teamMembers: [String] }],
-// });
-
-// const Participant = mongoose.model("Participant", participantSchema);
-
-// app.post("/register", async (req, res) => {
-//   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
-
-//   if (singleEvents.length > 5 || groupEvents.length > 3) {
-//     return res.status(400).json({ message: "Event selection exceeds limit." });
-//   }
-
-//   try {
-//     const newParticipant = new Participant({
-//       name,
-//       email,
-//       department,
-//       year,
-//       phone,
-//       singleEvents,
-//       groupEvents,
-//     });
-//     await newParticipant.save();
-//     res.status(201).json({ message: "Registration successful!" });
-//   } catch (error) {
-//     res.status(500).json({ message: "Error registering participant." });
-//   }
-// });
-
-// app.get("/participants", async (req, res) => {
-//   try {
-//     const participants = await Participant.find();
-//     res.json(participants);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error fetching participants." });
-//   }
-// });
-
-// app.listen(5000, () => console.log("Server running on port 5000"));
-
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -73,7 +10,12 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*", // For testing, allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 app.use(bodyParser.json());
 
 // API Routes
@@ -137,5 +79,4 @@ app.get("/api/registrations", async (req, res) => {
 
 // Server Listening
 const PORT = process.env.PORT || 5000;
-app.listen(5000, () => console.log("Server running on port 5000"));
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
