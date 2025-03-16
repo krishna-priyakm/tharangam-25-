@@ -43,7 +43,7 @@ const participantSchema = new mongoose.Schema({
 const Participant = mongoose.model("Participant", participantSchema);
 
 // Register Participant Route
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   const { name, email, department, year, phone, singleEvents, groupEvents } = req.body;
 
   if (singleEvents.length > 5 || groupEvents.length > 3) {
@@ -75,6 +75,11 @@ app.get("/api/registrations", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Error fetching participants." });
   }
+});
+
+// Root route to check server status
+app.get("/", (req, res) => {
+  res.send("Backend is live!");
 });
 
 // Server Listening
