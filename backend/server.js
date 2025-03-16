@@ -11,16 +11,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    "https://tharangam25.vercel.app", 
-    "http://localhost:3000", 
-    "http://localhost:3001", 
-    "capacitor://localhost", // For mobile apps
-    "ionic://localhost"      // For mobile apps
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: "*",  // Allow all origins (for now)
+  methods: ["GET", "POST"],
+  credentials: true,
 }));
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
