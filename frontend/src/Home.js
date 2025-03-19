@@ -118,7 +118,7 @@ const Home = () => {
         <a href="https://www.instagram.com/tharangam_cet?igsh=Z2lnaWlpMDZ6ZWVm" target="_blank" rel="noopener noreferrer">
           📸 Follow us on Instagram
         </a>
-        <a href="/Byelaws.pdf" target="_blank" rel="noopener noreferrer">
+        <a href="/guidelines2025.pdf" target="_blank" rel="noopener noreferrer">
           📄 Event Guidelines (PDF)
         </a>
         <p className="copyright">
