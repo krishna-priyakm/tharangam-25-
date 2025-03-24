@@ -62,17 +62,21 @@ body {
 
 
 /* Register Button */
-.register-button {
-  margin-top: 20px;
-  background-color: #628956;
+.register-button,
+.view-scores-button {
+  background: #628956;
   color: white;
-  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  padding: 12px 24px;
   font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
+  margin: 10px;
 }
+
+
 
 .register-button:hover {
   background-color: #b91c1c;
