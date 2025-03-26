@@ -5,13 +5,13 @@ const Score = () => {
   const scores = [
     { position: 1, department: "MCA", points: 37 },
     { position: 2, department: "PHD", points: 14 },
-    { position: 3, department: "Architecture", points: 10},
-    { position: 4, department: "Electrical Engineering", points: 4 },
-    { position: 5, department: "Electronics Engineering", points: 0 },
-    { position: 6, department: "Computer Science Engineering", points: 0},
-    { position: 7, department: "MBA", points: 0},
-    { position: 8, department: "Mechanical Engineering", points: 0},
-    { position: 9, department: "Civil Engineering", points: 0},
+    { position: 3, department: "Architecture", points: 10 },
+    { position: 4, department: "Electronics Engineering", points: 4 },
+    { position: 5, department: "Electrical Engineering", points: 0 },
+    { position: 6, department: "Computer Science Engineering", points: 0 },
+    { position: 7, department: "MBA", points: 0 },
+    { position: 8, department: "Mechanical Engineering", points: 0 },
+    { position: 9, department: "Civil Engineering", points: 0 },
   ];
 
   return (
@@ -35,6 +35,19 @@ const Score = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Link to Excel file with small logo */}
+      <div className="score-link-container">
+        <a
+          href="https://docs.google.com/file/d/1pGfYITq029Q0t77Zz1wgqqEfvra6G0wV/edit?usp=docslist_api&filetype=msexcel"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="score-link"
+        >
+          <img src="/p12blue.png" alt="Excel Logo" className="score-logo" />
+          View Full Score Sheet
+        </a>
+      </div>
     </div>
   );
 };
