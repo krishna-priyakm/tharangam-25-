@@ -36,7 +36,7 @@ const Home = () => {
       </p>
 
       {/* Register Button */}
-      <a href="https://forms.gle/roK9CNUCFxaLq2Bp7" target="_blank" rel="noopener noreferrer">
+      {/* <a href="https://forms.gle/roK9CNUCFxaLq2Bp7" target="_blank" rel="noopener noreferrer">
         <motion.button
           className="register-button"
           whileHover={{ scale: 1.1 }}
@@ -44,7 +44,7 @@ const Home = () => {
         >
           Register Now
         </motion.button>
-      </a>
+      </a> */}
 
       {/* View Scores Button */}
       <motion.button
