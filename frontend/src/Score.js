@@ -7,10 +7,10 @@ const Score = () => {
     { position: 2, department: "PHD", points: 99 },
     { position: 3, department: "Civil Engineering", points: 46 },
     { position: 4, department: "Electronics Engineering", points: 42 },
-    { position: 8, department: "Electrical Engineering", points: 30 },
-    { position: 5, department: "Mechanical Engineering", points: 28 },
-    { position: 6, department: "Architecture", points: 21 },
-    { position: 7, department: "MBA", points: 10 },
+    { position: 5, department: "Electrical Engineering", points: 30 },
+    { position: 6, department: "Mechanical Engineering", points: 28 },
+    { position: 7, department: "Architecture", points: 21 },
+    { position: 8, department: "MBA", points: 10 },
     { position: 9, department: "Computer Science Engineering", points: 0 },
   ];
 
