@@ -3,14 +3,14 @@ import "./score.css"; // Import CSS file
 
 const Score = () => {
   const scores = [
-    { position: 1, department: "PHD", points: 95 },
-    { position: 2, department: "MCA", points: 91 },
-    { position: 3, department: "Electronics Engineering", points: 36 },
-    { position: 4, department: "Civil Engineering", points: 33 },
-    { position: 5, department: "Mechanical Engineering", points: 24 },
+    { position: 1, department: "MCA", points: 131 },
+    { position: 2, department: "PHD", points: 99 },
+    { position: 3, department: "Civil Engineering", points: 46 },
+    { position: 4, department: "Electronics Engineering", points: 42 },
+    { position: 8, department: "Electrical Engineering", points: 30 },
+    { position: 5, department: "Mechanical Engineering", points: 28 },
     { position: 6, department: "Architecture", points: 21 },
     { position: 7, department: "MBA", points: 10 },
-    { position: 8, department: "Electrical Engineering", points: 7 },
     { position: 9, department: "Computer Science Engineering", points: 0 },
   ];
 
