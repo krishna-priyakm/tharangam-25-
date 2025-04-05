@@ -3,8 +3,8 @@ import "./score.css"; // Import CSS file
 
 const Score = () => {
   const scores = [
-    { position: 1, department: "MCA", points: 155 },
-    { position: 2, department: "PHD", points: 115 },
+    { position: 1, department: "MCA", points: 178 },
+    { position: 2, department: "PHD", points: 131 },
     { position: 3, department: "Electronics Engineering", points: 62 },
     { position: 4, department: "Civil Engineering", points: 59 },
     { position: 5, department: "Electrical Engineering", points: 41 },
