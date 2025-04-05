@@ -1,14 +1,15 @@
 import React from "react";
 import "./score.css"; // Import CSS file
 
+
 const Score = () => {
   const scores = [
-    { position: 1, department: "MCA", points: 191 },
+    { position: 1, department: "MCA", points: 195 },
     { position: 2, department: "PHD", points: 136 },
     { position: 3, department: "Electronics Engineering", points: 79 },
     { position: 4, department: "Civil Engineering", points: 74 },
-    { position: 5, department: "Mechanical Engineering", points: 47 },
-    { position: 6, department: "Architecture", points: 46 },
+    { position: 5, department: "Architecture", points: 51 },
+    { position: 6, department: "Mechanical Engineering", points: 47 },
     { position: 7, department: "Electrical Engineering", points: 41 },
     { position: 8, department: "MBA", points: 12 },
     { position: 9, department: "Computer Science Engineering", points: 1 },
