@@ -1,11 +1,13 @@
 import React from "react";
 import "./score.css"; // Import CSS file
 
+// cd "C:\Pictures\pg fest\frontend"
+
 
 const Score = () => {
   const scores = [
-    { position: 1, department: "MCA", points: 200 },
-    { position: 2, department: "PHD", points: 136 },
+    { position: 1, department: "MCA", points: 215 },
+    { position: 2, department: "PHD", points: 144 },
     { position: 3, department: "Electronics Engineering", points: 79 },
     { position: 4, department: "Civil Engineering", points: 74 },
     { position: 5, department: "Architecture", points: 51 },
