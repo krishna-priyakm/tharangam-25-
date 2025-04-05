@@ -4,7 +4,7 @@ import "./score.css"; // Import CSS file
 
 const Score = () => {
   const scores = [
-    { position: 1, department: "MCA", points: 195 },
+    { position: 1, department: "MCA", points: 200 },
     { position: 2, department: "PHD", points: 136 },
     { position: 3, department: "Electronics Engineering", points: 79 },
     { position: 4, department: "Civil Engineering", points: 74 },
